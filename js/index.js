@@ -60,10 +60,21 @@ const nuevoObjeto = (elementos) => {
   const mayoresEdad = elementos.filter((elemento) => elemento.paciente.edad > 17).length;
   const hombresDietaDiabetes = elementos.filter((elemento) => elemento.paciente.sexo === "H"
     && elemento.dieta.toLowerCase() === "diabetes").length;
-  const totalDiasIngresados = elementos.diasIngresado.reduce((accumulator, currentValue) => accumulator + currentValue);
-  console.log(totalDiasIngresados);
+  const totalDiasIngresados = elementos.map((elemento => elemento.diasIngresado))
+    .reduce((accumulator, currentValue) => accumulator + currentValue);
+  const listaMujeres = elementos.filter((elemento) => elemento.paciente.sexo.toUpperCase() === "M");
+  const mediaEdadListaMujeres = Math.round(listaMujeres.map((elemento) => elemento.paciente.edad)
+    // eslint-disable-next-line no-mixed-operators
+    .reduce((accumulator, currentValue) => accumulator + currentValue) / listaMujeres.length * 100) / 100;
 
-  /* elementos.map((elemento) => console.log(elemento.paciente.nombre)); */
+  const objeto = {
+    nPacientes: numeroPacientes,
+    nMayoresEdad: mayoresEdad,
+    nHombresDiabeticos: hombresDietaDiabetes,
+    totalDiasIngreso: totalDiasIngresados,
+    mediaEdadMujeres: mediaEdadListaMujeres
+  };
+  return objeto;
 };
 
 console.log(nuevoObjeto(informacionPacientes));
