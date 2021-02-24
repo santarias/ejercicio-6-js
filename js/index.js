@@ -65,7 +65,7 @@ const nuevoObjeto = (elementos) => {
   const listaMujeres = elementos.filter((elemento) => elemento.paciente.sexo.toUpperCase() === "M");
   const mediaEdadListaMujeres = Math.round(listaMujeres.map((elemento) => elemento.paciente.edad)
     // eslint-disable-next-line no-mixed-operators
-    .reduce((accumulator, currentValue) => accumulator + currentValue) / listaMujeres.length * 100) / 100;
+    .reduce((acumulador, valorActual) => acumulador + valorActual) / listaMujeres.length * 100) / 100;
 
   const objeto = {
     nPacientes: numeroPacientes,
